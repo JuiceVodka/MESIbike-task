@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">MESIbajk</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dodaj">DODAJ</string>
+    <string name="sifra">Sifra kolesa (1-7)</string>
+    <string name="izposojevalec">Ime in priimek</string>
+    <string name="sektor">Sektor</string>
+    <string name="odDate">od (ura, dan, mesec)</string>
+    <string name="doDate">do (ura, dan, mesec)</string>
+    <string name="km">km</string>
+    <string name="namen">Namen</string>
+    <string name="info">Info</string>
+    <string name="rezervacija">Rezervacija</string>
+
+    <string-array name="sektor_arr">
+        <item>Razvoj</item>
+        <item>Prodaja</item>
+        <item>Marketing</item>
+        <item>Proizvodnja</item>
+    </string-array>
+
+    <string-array name="namen_arr">
+        <item>Sluzbeni</item>
+        <item>Privatni</item>
+    </string-array>
+</resources>
