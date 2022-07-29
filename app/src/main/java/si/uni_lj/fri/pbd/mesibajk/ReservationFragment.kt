@@ -54,7 +54,7 @@ class ReservationFragment() : Fragment()/*, DatePickerDialog.OnDateSetListener, 
     var from_dateListener :OnDateSetListener = object : OnDateSetListener{
         override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
             odD = dayOfMonth.toString()
-            odM = month.toString()
+            odM = (month+1).toString()
             odY = year.toString()
             val timePickerDialog = TimePickerDialog(activity,
                 from_timeListener, ch, cmin, true
@@ -66,7 +66,7 @@ class ReservationFragment() : Fragment()/*, DatePickerDialog.OnDateSetListener, 
     var to_dateListener: OnDateSetListener = object : OnDateSetListener{
         override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
             doD = dayOfMonth.toString()
-            doM = month.toString()
+            doM = (month+1).toString()
             doY = year.toString()
             val timePickerDialog = TimePickerDialog(activity,
                 to_timeListener, ch, cmin, true
@@ -117,7 +117,7 @@ class ReservationFragment() : Fragment()/*, DatePickerDialog.OnDateSetListener, 
         val rightNow = Calendar.getInstance()
         ch = rightNow.get(Calendar.HOUR_OF_DAY)
         cd = rightNow.get(Calendar.DAY_OF_MONTH)
-        cm = rightNow.get(Calendar.MONTH) +1
+        cm = rightNow.get(Calendar.MONTH)
         cy = rightNow.get(Calendar.YEAR)
         cmin = rightNow.get(Calendar.MINUTE)
 

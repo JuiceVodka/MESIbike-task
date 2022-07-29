@@ -1,8 +1,8 @@
 package si.uni_lj.fri.pbd.mesibajk
 
-//import org.junit.Assert.*
+import org.junit.Assert.*
 
-import com.google.common.truth.Truth.assertThat
+//import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -42,7 +42,7 @@ class ValidatorTest {
 
         val finalRez = (!(rez1 || rez2 || rez3) && rez4)
 
-        assertThat(finalRez).isEqualTo(true)
+        assertEquals(finalRez, true)
     }
 
     @Test
@@ -56,6 +56,6 @@ class ValidatorTest {
 
         val finalRez = !rez1 && rez2
 
-        assertThat(finalRez).isEqualTo(true)
+        assertEquals(finalRez, true)
     }
 }
