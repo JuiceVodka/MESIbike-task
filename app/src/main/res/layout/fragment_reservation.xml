@@ -8,16 +8,6 @@
     tools:context=".ReservationFragment"
     android:layout_margin="10dp">
 
-    <!--<EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/numBike"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="20dp"
-        android:hint="@string/sifra"/>-->
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -28,119 +18,63 @@
         android:layout_marginHorizontal="20dp"
         android:hint="@string/izposojevalec"/>
 
-    <!--<EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/sektor"
-        app:layout_constraintTop_toBottomOf="@id/izposojevalec"
-        app:layout_constraintStart_toStartOf="@id/izposojevalec"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="20dp"
-        android:hint="@string/sektor"/>-->
 
     <Spinner
+        android:id="@+id/sektor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sektor"
-        app:layout_constraintTop_toBottomOf="@id/izposojevalec"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
         android:entries="@array/sektor_arr"
-        android:prompt="@string/sektor"/>
+        android:minHeight="48dp"
+        android:prompt="@string/sektor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/izposojevalec" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/odF"
+        app:layout_constraintTop_toBottomOf="@id/sektor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/doF"
+        android:layout_marginTop="20dp"
+        android:text="OD"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/doF"
+        app:layout_constraintTop_toBottomOf="@id/sektor"
+        app:layout_constraintStart_toEndOf="@id/odF"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:text="DO"/>
 
     <TextView
         android:id="@+id/odText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="150dp"
         android:text="@string/odDate"
-        app:layout_constraintEnd_toEndOf="@id/doText"
+        app:layout_constraintEnd_toStartOf="@id/doText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sektor"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintTop_toBottomOf="@id/odF"
+        android:layout_marginTop="5dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/doText"
         android:text="@string/doDate"
-        app:layout_constraintTop_toBottomOf="@id/sektor"
+        app:layout_constraintTop_toBottomOf="@id/doF"
         app:layout_constraintStart_toEndOf="@id/odText"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="20dp"/>
-
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/odUra"
-        app:layout_constraintTop_toBottomOf="@id/odText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/odDan"
-        android:layout_marginTop="20dp"
-        android:hint="Ura"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/odDan"
-        app:layout_constraintTop_toBottomOf="@id/odText"
-        app:layout_constraintStart_toEndOf="@id/odUra"
-        app:layout_constraintEnd_toStartOf="@id/odMesec"
-        android:layout_marginTop="20dp"
-        android:hint="D"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/odMesec"
-        app:layout_constraintTop_toBottomOf="@id/odText"
-        app:layout_constraintStart_toEndOf="@id/odDan"
-        app:layout_constraintEnd_toStartOf="@id/doUra"
-        android:layout_marginTop="20dp"
-        android:hint="M"
-        android:layout_marginEnd="50dp"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/doUra"
-        app:layout_constraintTop_toBottomOf="@id/doText"
-        app:layout_constraintStart_toEndOf="@id/odMesec"
-        app:layout_constraintEnd_toStartOf="@id/doDan"
-        android:layout_marginTop="20dp"
-        android:hint="Ura"
-        android:layout_marginStart="50dp"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/doDan"
-        app:layout_constraintTop_toBottomOf="@id/doText"
-        app:layout_constraintStart_toEndOf="@id/doUra"
-        app:layout_constraintEnd_toStartOf="@id/doMesec"
-        android:layout_marginTop="20dp"
-        android:hint="D"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/doMesec"
-        app:layout_constraintTop_toBottomOf="@id/doText"
-        app:layout_constraintStart_toEndOf="@id/doDan"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:hint="M"/>
+        android:layout_marginTop="5dp"/>
 
     <com.google.android.material.slider.Slider
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/kmSlide"
-        app:layout_constraintTop_toBottomOf="@id/odMesec"
+        app:layout_constraintTop_toBottomOf="@id/odText"
         android:valueFrom="1.0"
         android:valueTo="20.0"
         android:stepSize="1.0"
@@ -149,7 +83,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:id="@+id/kmText"
         app:layout_constraintTop_toBottomOf="@id/kmSlide"
         app:layout_constraintStart_toStartOf="parent"
@@ -158,25 +92,16 @@
         android:text="Na sliderju izberi razladjo v km"/>
 
     <Spinner
+        android:id="@+id/namen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/namen"
-        app:layout_constraintTop_toBottomOf="@id/kmText"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
         android:entries="@array/namen_arr"
-        android:prompt="@string/namen"/>
-    <!--<EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/namen"
-        app:layout_constraintTop_toBottomOf="@id/kmText"
+        android:minHeight="48dp"
+        android:prompt="@string/namen"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="20dp"
-        android:hint="@string/namen"/>-->
-
+        app:layout_constraintTop_toBottomOf="@id/kmText" />
 
     <Button
         android:layout_width="wrap_content"

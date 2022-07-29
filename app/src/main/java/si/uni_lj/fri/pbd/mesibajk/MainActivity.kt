@@ -30,9 +30,6 @@ class MainActivity : AppCompatActivity(), RecyclerAdapter.bikeClickListener, Bik
             doDatum: String,
             km: String
         ) {
-            Log.d("DEBUG", "INTERFACE")
-
-            //dbHelper?.returnReservations(bikeName)
 
             val values: ContentValues = ContentValues()
             values.put(DatabaseHelper.BIKE_NAME, bikeName);
@@ -74,9 +71,9 @@ class MainActivity : AppCompatActivity(), RecyclerAdapter.bikeClickListener, Bik
             fillDb()
         }else{
             Log.d("DEBUG", "SCND")
-            //fillDb()
         }
 
+        //Teh par vrstic je tu zaradi testiranja (če hočemo pobrisati bazo po testiranju)
         bikeList = dbHelper!!.returnBikes()
         if(bikeList!!.size < 7){
             fillDb()
@@ -98,7 +95,7 @@ class MainActivity : AppCompatActivity(), RecyclerAdapter.bikeClickListener, Bik
 
     fun updateBikes(){
         for(bike in bikeList!!){
-            val free = dbHelper?.returnReservationFree(bike.name, SimpleDateFormat("HH dd/MM/yyyy",
+            val free = dbHelper?.returnReservationFree(bike.name, SimpleDateFormat("HH:mm dd/MM/yyyy",
                 Locale.ENGLISH).format(Date()))
             if(free == true){
                 bike.status = "Na voljo"
@@ -112,47 +109,38 @@ class MainActivity : AppCompatActivity(), RecyclerAdapter.bikeClickListener, Bik
         val values: ContentValues = ContentValues()
         values.put(DatabaseHelper.BIKE_NAME, "Modro kolo");
         values.put(DatabaseHelper.BIKE_KM, 0);
-        //values.put(DatabaseHelper.BIKE_STATUS, "Na voljo");
         dbHelper?.writableDatabase?.insert(DatabaseHelper.TABLE_BIKES, null, values)
         values.clear()
 
         values.put(DatabaseHelper.BIKE_NAME, "Zeleno kolo");
         values.put(DatabaseHelper.BIKE_KM, 0);
-        //values.put(DatabaseHelper.BIKE_STATUS, "Na voljo");
         dbHelper?.writableDatabase?.insert(DatabaseHelper.TABLE_BIKES, null, values)
         values.clear()
 
         values.put(DatabaseHelper.BIKE_NAME, "Hitro kolo");
         values.put(DatabaseHelper.BIKE_KM, 0);
-        //values.put(DatabaseHelper.BIKE_STATUS, "Na voljo");
         dbHelper?.writableDatabase?.insert(DatabaseHelper.TABLE_BIKES, null, values)
         values.clear()
 
         values.put(DatabaseHelper.BIKE_NAME, "Popraskano kolo");
         values.put(DatabaseHelper.BIKE_KM, 0);
-        //values.put(DatabaseHelper.BIKE_STATUS, "Na voljo");
         dbHelper?.writableDatabase?.insert(DatabaseHelper.TABLE_BIKES, null, values)
         values.clear()
 
         values.put(DatabaseHelper.BIKE_NAME, "Staro kolo");
         values.put(DatabaseHelper.BIKE_KM, 0);
-        //values.put(DatabaseHelper.BIKE_STATUS, "Na voljo");
         dbHelper?.writableDatabase?.insert(DatabaseHelper.TABLE_BIKES, null, values)
         values.clear()
 
-        values.put(DatabaseHelper.BIKE_NAME, "Pocasno kolo");
+        values.put(DatabaseHelper.BIKE_NAME, "Počasno kolo");
         values.put(DatabaseHelper.BIKE_KM, 0);
-        //values.put(DatabaseHelper.BIKE_STATUS, "Na voljo");
         dbHelper?.writableDatabase?.insert(DatabaseHelper.TABLE_BIKES, null, values)
         values.clear()
 
-        values.put(DatabaseHelper.BIKE_NAME, "Elektricno kolo");
+        values.put(DatabaseHelper.BIKE_NAME, "Električno kolo");
         values.put(DatabaseHelper.BIKE_KM, 0);
-        //values.put(DatabaseHelper.BIKE_STATUS, "Na voljo");
         dbHelper?.writableDatabase?.insert(DatabaseHelper.TABLE_BIKES, null, values)
         values.clear()
-
-        //dbHelper?.returnBikes()
 
         Log.d("DEBUG", "Baza napolnjena")
     }
@@ -186,40 +174,6 @@ class MainActivity : AppCompatActivity(), RecyclerAdapter.bikeClickListener, Bik
         fragmentTransaction?.replace(R.id.fragmentFrame, reservationFragment)
         fragmentTransaction?.commit()
     }
-
-    //from ReservationFragment
-    /*override fun reserveBike(
-        bikeName: String,
-        izposojevalec: String,
-        sektor: String,
-        namen: String,
-        odDatum: String,
-        doDatum: String,
-        km: String
-    ) {
-        Log.d("DEBUG", "INTERFACE")
-
-        //dbHelper?.returnReservations(bikeName)
-
-        val values: ContentValues = ContentValues()
-        values.put(DatabaseHelper.BIKE_NAME, bikeName);
-        values.put(DatabaseHelper.IZPOSOJEVALEC_NAME, izposojevalec);
-        values.put(DatabaseHelper.IZPOSOJEVALEC_NAMEN, namen);
-        values.put(DatabaseHelper.IZPOSOJEVALEC_SEKTOR, sektor);
-        values.put(DatabaseHelper.TERMIN_OD, odDatum);
-        values.put(DatabaseHelper.TERMIN_DO, doDatum);
-        values.put(DatabaseHelper.BIKE_KM, km);
-        dbHelper?.writableDatabase?.insert(DatabaseHelper.TABLE_RESERVATIONS, null, values)
-        values.clear()
-
-        fragmentTransaction = supportFragmentManager.beginTransaction()
-        supportFragmentManager.popBackStack("bikes", FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        val bikesFragment :BikesFragment = BikesFragment()
-        fragmentTransaction?.replace(R.id.fragmentFrame, bikesFragment)
-        fragmentTransaction?.commit()
-        updateBikes()
-    }*/
-
 
     override fun gbl(): List<BikeModel>? {
         return bikeList

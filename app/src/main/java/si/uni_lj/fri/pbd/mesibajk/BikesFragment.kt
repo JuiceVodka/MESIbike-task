@@ -51,7 +51,6 @@ class BikesFragment() : Fragment() {
         recyclerView.layoutManager = layoutmanager
         recyclerView.adapter = adapter
 
-
         return view
     }
 

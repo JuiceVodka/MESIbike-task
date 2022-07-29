@@ -44,7 +44,7 @@ class DatabaseHelperTest{
 
     @Test
     fun returnReservationFree() {
-        val free = dbHelper.returnReservationFree(dbHelper.returnBikes()[0].name, SimpleDateFormat("HH dd/MM/yyyy",
+        val free = dbHelper.returnReservationFree(dbHelper.returnBikes()[0].name, SimpleDateFormat("HH:mm dd/MM/yyyy",
             Locale.ENGLISH).format(Date()))
         assertEquals(true, free)
     }
@@ -52,7 +52,7 @@ class DatabaseHelperTest{
     @Test
     fun getBikeKm() {
         val km = dbHelper.getBikeKm(dbHelper.returnBikes()[0].name)
-        assertEquals(0, km)
+        assertEquals(true, (km>=0))
     }
 
     @Test
@@ -111,13 +111,13 @@ class DatabaseHelperTest{
         dbHelper?.writableDatabase?.insert(DatabaseHelper.TABLE_BIKES, null, values)
         values.clear()
 
-        values.put(DatabaseHelper.BIKE_NAME, "Pocasno kolo");
+        values.put(DatabaseHelper.BIKE_NAME, "Počasno kolo");
         values.put(DatabaseHelper.BIKE_KM, 0);
         //values.put(DatabaseHelper.BIKE_STATUS, "Na voljo");
         dbHelper?.writableDatabase?.insert(DatabaseHelper.TABLE_BIKES, null, values)
         values.clear()
 
-        values.put(DatabaseHelper.BIKE_NAME, "Elektricno kolo");
+        values.put(DatabaseHelper.BIKE_NAME, "Električno kolo");
         values.put(DatabaseHelper.BIKE_KM, 0);
         //values.put(DatabaseHelper.BIKE_STATUS, "Na voljo");
         dbHelper?.writableDatabase?.insert(DatabaseHelper.TABLE_BIKES, null, values)

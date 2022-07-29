@@ -77,25 +77,16 @@ class DatabaseHelper(context: Context) :SQLiteOpenHelper(
                         cursor.getString(1),
                         cursor.getInt(2),
                         "Na voljo"
-                        //cursor.getString(3)
                     )
                 )
             } while (cursor.moveToNext())
         }
 
-        Log.d("DEBUG/DATABASE BIKES", bikeList.toString())
         return bikeList
     }
 
     fun returnReservations(bikeName:String) : Cursor? {
         val cursor = this.readableDatabase?.rawQuery("SELECT * FROM " + TABLE_RESERVATIONS + " WHERE name=?", arrayOf(bikeName));
-        /*Log.d("DEBUG", cursor?.columnCount.toString())
-        Log.d("DEBUG", cursor?.count.toString())
-        if (cursor?.moveToFirst() == true) {
-            do {
-                Log.d("DEBUG", "PREMIK PO QUERIJU")
-            } while (cursor.moveToNext())
-        }*/
         return cursor
     }
 
@@ -109,13 +100,15 @@ class DatabaseHelper(context: Context) :SQLiteOpenHelper(
                 odTime = cursor.getString(5)
             } while (cursor.moveToNext())
 
-            val odFormat = SimpleDateFormat("HH dd/MM/yyyy").parse(odTime)
-            val doFormat = SimpleDateFormat("HH dd/MM/yyyy").parse(doTime)
-            var curFormat = SimpleDateFormat("HH dd/MM/yyyy").parse(currTime)
-            Log.d("DEBUG", doTime)
-            Log.d("DEBUG", odTime)
-            Log.d("DEBUG", currTime)
+            val odFormat = SimpleDateFormat("HH:mm dd/MM/yyyy").parse(odTime)
+            val doFormat = SimpleDateFormat("HH:mm dd/MM/yyyy").parse(doTime)
+            var curFormat = SimpleDateFormat("HH:mm dd/MM/yyyy").parse(currTime)
+
             return (doFormat < curFormat)
+            //Zaradi stavka v navolilih: "Vidna prihodnja rezervacija" sem nalogo naredil v smeri,
+            //da je lahko aktivna samo ena rezervacija naenkrat, za spremembo kjer bio bilo možnih
+            //več rezervacij naenkrat bi moral tu spremeniti kaj se vrača ter dodati nekaj logike
+            //v ReservationFragment
         }else{
             return true
         }
@@ -158,20 +151,17 @@ class DatabaseHelper(context: Context) :SQLiteOpenHelper(
         cursor = this.readableDatabase?.rawQuery("SELECT * FROM " + TABLE_RESERVATIONS + " WHERE name=? AND sektor='Proizvodnja'", arrayOf(bikeName))
         cursor?.count?.let { oddelekList.add(it) }
 
-        Log.d("DEBUG", oddelekList.toString())
         return oddelekList
     }
 
     fun returnNumNamen(bikeName: String) :List<Int>{
         val namenList = mutableListOf<Int>()
-        var cursor = this.readableDatabase?.rawQuery("SELECT * FROM " + TABLE_RESERVATIONS + " WHERE name=? AND namen='Sluzbeni'", arrayOf(bikeName))
+        var cursor = this.readableDatabase?.rawQuery("SELECT * FROM " + TABLE_RESERVATIONS + " WHERE name=? AND namen='Službeni'", arrayOf(bikeName))
         cursor?.count?.let { namenList.add(it) }
 
         cursor = this.readableDatabase?.rawQuery("SELECT * FROM " + TABLE_RESERVATIONS + " WHERE name=? AND namen='Privatni'", arrayOf(bikeName))
         cursor?.count?.let { namenList.add(it) }
 
-
-        Log.d("DEBUG", namenList.toString())
         return namenList
     }
 }

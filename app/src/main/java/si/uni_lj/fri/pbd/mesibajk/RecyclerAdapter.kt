@@ -48,17 +48,11 @@ class RecyclerAdapter(val bikeList :List<BikeModel>) : RecyclerView.Adapter<Recy
 
         holder.itemView.setOnClickListener(object :View.OnClickListener{
             override fun onClick(v: View?){
-                /*val activity = v!!.context as AppCompatActivity
-                val detailsFragment :DetailsFragment = DetailsFragment()
-                val ft = activity.supportFragmentManager.beginTransaction()
-                ft.addToBackStack("bikes")
-                ft.replace(R.id.fragmentFrame, detailsFragment)
-                ft.commit()*/
+                Toast.makeText(v!!.context, nm, Toast.LENGTH_SHORT).show()
             }
         })
         holder.rezButton?.setOnClickListener (object :View.OnClickListener{
             override fun onClick(v: View?){
-                Log.d("DEBUG", "click")
                 if(bikeList[holder.adapterPosition].status == "Na voljo"){
                     try{
                         buttonListener = v!!.context as bikeClickListener
@@ -67,9 +61,8 @@ class RecyclerAdapter(val bikeList :List<BikeModel>) : RecyclerView.Adapter<Recy
                     }
                     buttonListener?.rezClick(bikeList[holder.adapterPosition].name)
                 }else{
-                    Toast.makeText(v!!.context,"Kolo je ze rezervirano!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v!!.context,"Kolo je že rezervirano!",Toast.LENGTH_SHORT).show();
                 }
-
             }
         })
 
@@ -85,9 +78,6 @@ class RecyclerAdapter(val bikeList :List<BikeModel>) : RecyclerView.Adapter<Recy
                 buttonListener?.detailClick(bikeList[holder.adapterPosition].name)
             }
         })
-
-
-
     }
 
     override fun getItemCount(): Int {

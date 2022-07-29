@@ -35,8 +35,6 @@ class DetailsFragment() : Fragment() {
         bikeName = arguments?.getString("bikename")
 
         val lastCursor = bikeName?.let { dbHelper!!.returnLastRez(it) }
-        Log.d("DEBUG", lastCursor?.count.toString())
-        Log.d("DEBUG", lastCursor?.columnCount.toString())
         var trenutnaRezervacija = "Ni podatkov o trenutni rezervaciji"
         val exsistsOne = lastCursor?.moveToNext()
         if(exsistsOne == true){
@@ -45,7 +43,7 @@ class DetailsFragment() : Fragment() {
 
         val isFree = bikeName?.let {
             dbHelper!!.returnReservationFree(
-                it, SimpleDateFormat("HH dd/MM/yyyy",
+                it, SimpleDateFormat("HH:mm dd/MM/yyyy",
                     Locale.ENGLISH).format(Date()))
         }
 
@@ -61,15 +59,15 @@ class DetailsFragment() : Fragment() {
 
 
         val km = bikeName?.let { dbHelper!!.getBikeKm(it) }
-        val kmFormat = String.format("Stevilo prevozenih kilometrov: %d", km)
+        val kmFormat = String.format("Število prevoženih kilometrov: %d", km)
 
         val stNamen = bikeName?.let { dbHelper!!.returnNumNamen(it) }
-        val namenString = String.format("Stevilo izposoj po namenih:\n-Sluzbeni: %d\n-Privatni: %d",
+        val namenString = String.format("Število izposoj po namenih:\n-Službeni: %d\n-Privatni: %d",
             stNamen?.get(0) ?: "/", stNamen?.get(1) ?: "/"
         )
 
         val stOddelek = bikeName?.let { dbHelper!!.returnNumOddelek(it) }
-        val oddelekString = String.format("Stevilo izposoj po oddelku:\n-Razvoj: %d\n-Prodaja: %d\n-Marketing :%d\n-Proizvodnja: %d",
+        val oddelekString = String.format("Število izposoj po oddelku:\n-Razvoj: %d\n-Prodaja: %d\n-Marketing: %d\n-Proizvodnja: %d",
             stOddelek?.get(0) ?: "/", stOddelek?.get(1) ?: "/", stOddelek?.get(2) ?: "/",
             stOddelek?.get(3) ?: "/"
         )

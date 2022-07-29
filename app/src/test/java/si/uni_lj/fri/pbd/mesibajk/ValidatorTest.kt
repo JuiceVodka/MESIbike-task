@@ -15,26 +15,30 @@ class ValidatorTest {
         var hour = "30"
         var day = "40"
         var month = "0"
+        var min = "-1"
 
-        val rez1 = Validator.validateDate(hour, day, month)
+        val rez1 = Validator.validateDate(hour, day, month, min)
 
         hour = "a"
         day = "1"
         month = "1"
+        min = "c"
 
-        val rez2 = Validator.validateDate(hour, day, month)
+        val rez2 = Validator.validateDate(hour, day, month, min)
 
         hour = "12"
         day = "30"
         month = "2"
+        min = "5"
 
-        val rez3 = Validator.validateDate(hour, day, month)
+        val rez3 = Validator.validateDate(hour, day, month, min)
 
         hour = "10"
         day = "4"
         month = "7"
+        min = "12"
 
-        val rez4 = Validator.validateDate(hour, day, month)
+        val rez4 = Validator.validateDate(hour, day, month, min)
 
         val finalRez = (!(rez1 || rez2 || rez3) && rez4)
 
